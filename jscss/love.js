@@ -95,7 +95,7 @@
     Seed.prototype = {
         draw: function() {
             this.drawHeart();
-            this.drawText();
+            // this.drawText();
         },
         addPosition: function(x, y) {
             this.cirle.point = this.cirle.point.add(new Point(x, y));
