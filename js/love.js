@@ -59,6 +59,10 @@ function timeElapse(date){
 
 
 $(function () {
+	$("#clock-box").click(function () {
+		window.open("photo-album.html");
+    })
+
     var canvas = $('#canvas');
 
     if (!canvas[0].getContext) {
