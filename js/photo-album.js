@@ -453,35 +453,35 @@
 
         // north
 
-        {img:'images/1.jpg', x:-1000, y:0, z:1500, nx:0, nz:1},
+        {img:'images/album-temp/1.jpg', x:-1000, y:0, z:1500, nx:0, nz:1},
 
-        {img:'images/2.jpg', x:0,     y:0, z:1500, nx:0, nz:1},
+        {img:'images/album-temp/2.jpg', x:0,     y:0, z:1500, nx:0, nz:1},
 
-        {img:'images/3.jpg', x:1000,  y:0, z:1500, nx:0, nz:1},
+        {img:'images/album-temp/3.jpg', x:1000,  y:0, z:1500, nx:0, nz:1},
 
         // east
 
-        {img:'images/4.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+        {img:'images/album-temp/4.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
 
-        {img:'images/5.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+        {img:'images/album-temp/5.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
 
-        {img:'images/6.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+        {img:'images/album-temp/6.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
 
         // south
 
-        {img:'images/7.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+        {img:'images/album-temp/7.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
 
-        {img:'images/8.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+        {img:'images/album-temp/8.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
 
-        {img:'images/9.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+        {img:'images/album-temp/9.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
 
         // west
 
-        {img:'images/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+        {img:'images/album-temp/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
 
-        {img:'images/11.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+        {img:'images/album-temp/11.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
 
-        {img:'images/12.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
+        {img:'images/album-temp/12.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
 
     ],
 
