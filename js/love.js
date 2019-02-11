@@ -59,7 +59,7 @@ function timeElapse(date){
 
 
 $(function () {
-	$("#clock-box").click(function () {
+	$("#main").click(function () {
 		window.open("photo-album.html");
     })
 

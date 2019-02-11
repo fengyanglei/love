@@ -1,6 +1,5 @@
 
 (function () {
-
     /* ==== definitions ==== */
 
     var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1,2],
@@ -449,41 +448,42 @@
 
 })().load({
 
-    imgdata:[
-
-        // north
-
-        {img:'images/album-temp/1.jpg', x:-1000, y:0, z:1500, nx:0, nz:1},
-
-        {img:'images/album-temp/2.jpg', x:0,     y:0, z:1500, nx:0, nz:1},
-
-        {img:'images/album-temp/3.jpg', x:1000,  y:0, z:1500, nx:0, nz:1},
-
-        // east
-
-        {img:'images/album-temp/4.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-
-        {img:'images/album-temp/5.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-
-        {img:'images/album-temp/6.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-
-        // south
-
-        {img:'images/album-temp/7.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-
-        {img:'images/album-temp/8.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-
-        {img:'images/album-temp/9.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-
-        // west
-
-        {img:'images/album-temp/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
-
-        {img:'images/album-temp/11.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-
-        {img:'images/album-temp/12.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
-
-    ],
+    imgdata:getImgdata(),
+    // imgdata:[
+    //
+    //     // north
+    //
+    //     {img:'images/album-temp/1.jpg', x:-1000, y:0, z:1500, nx:0, nz:1},
+    //
+    //     {img:'images/album-temp/2.jpg', x:0,     y:0, z:1500, nx:0, nz:1},
+    //
+    //     {img:'images/album-temp/3.jpg', x:1000,  y:0, z:1500, nx:0, nz:1},
+    //
+    //     // east
+    //
+    //     {img:'images/album-temp/4.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
+    //
+    //     {img:'images/album-temp/5.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
+    //
+    //     {img:'images/album-temp/6.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
+    //
+    //     // south
+    //
+    //     {img:'images/album-temp/7.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
+    //
+    //     {img:'images/album-temp/8.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
+    //
+    //     {img:'images/album-temp/9.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
+    //
+    //     // west
+    //
+    //     {img:'images/album-temp/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
+    //
+    //     {img:'images/album-temp/11.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
+    //
+    //     {img:'images/album-temp/12.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
+    //
+    // ],
 
     structure:[
 
@@ -670,3 +670,65 @@
     }
 
 });
+
+/**
+ * 图片路径数据
+ * @returns {Array}
+ */
+function getImgPath() {
+    var images = [];
+    for (var i = 1; i <= 12; i++) {
+        var image = "images/album-temp/" + i + ".jpg";
+        images.push(image);
+    }
+    return images;
+}
+
+/**
+ * 图片位置数据
+ */
+function getImgdata() {
+    var north = [];
+    var east = [];
+    var south = [];
+    var west = [];
+    var images = getImgPath();
+    var num = parseInt(images.length / 4);
+    for (var i = 0; i < num; i++) {
+        north.push(images[i]);
+        east.push(images[i + num]);
+        south.push(images[i + num * 2]);
+        west.push(images[i + num * 3]);
+    }
+
+    //图片位置数据
+    var imgdata = [];
+
+    //墙一半长度+1000
+    var h = (north.length - 1) * 500 + 1000;
+    for (var i = 0; i < north.length; i++) {
+        h -= 1000;
+        imgdata.push({img: north[i], x: h, y: 0, z: east.length * 500, nx: 0, nz: 1});
+    }
+
+    h = (south.length - 1) * 500 + 1000;
+    for (var i = 0; i < south.length; i++) {
+        h -= 1000;
+        imgdata.push({img: south[i], x: h, y: 0, z: -east.length * 500, nx: 0, nz: -1});
+    }
+
+    h = (east.length - 1) * 500 + 1000;
+    for (var i = 0; i < east.length; i++) {
+        h -= 1000;
+        imgdata.push({img: east[i], x: north.length * 500, y: 0, z: h, nx: -1, nz: 0});
+    }
+
+    h = (west.length - 1) * 500 + 1000;
+    for (var i = 0; i < west.length; i++) {
+        h -= 1000;
+        imgdata.push({img: west[i], x: -north.length * 500, y: 0, z: h, nx: 1, nz: 0});
+    }
+
+    return imgdata;
+
+}
