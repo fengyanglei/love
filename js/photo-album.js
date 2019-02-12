@@ -703,32 +703,25 @@ function getImgdata() {
 
     //图片位置数据
     var imgdata = [];
-
+    //图片数量
+    var nl = north.length;
+    var el = east.length;
     //墙一半长度+1000
-    var h = (north.length - 1) * 500 + 1000;
-    for (var i = 0; i < north.length; i++) {
+    var h = (nl - 1) * 500 + 1000;
+    //南北
+    for (var i = 0; i < nl; i++) {
         h -= 1000;
-        imgdata.push({img: north[i], x: h, y: 0, z: east.length * 500, nx: 0, nz: 1});
+        imgdata.push({img: north[i], x: h, y: 0, z: el * 500, nx: 0, nz: 1});
+        imgdata.push({img: south[i], x: h, y: 0, z: -el * 500, nx: 0, nz: -1});
     }
 
-    h = (south.length - 1) * 500 + 1000;
-    for (var i = 0; i < south.length; i++) {
+    //东西
+    h = (el - 1) * 500 + 1000;
+    for (var i = 0; i < el; i++) {
         h -= 1000;
-        imgdata.push({img: south[i], x: h, y: 0, z: -east.length * 500, nx: 0, nz: -1});
+        imgdata.push({img: east[i], x: nl * 500, y: 0, z: h, nx: -1, nz: 0});
+        imgdata.push({img: west[i], x: -nl * 500, y: 0, z: h, nx: 1, nz: 0});
     }
-
-    h = (east.length - 1) * 500 + 1000;
-    for (var i = 0; i < east.length; i++) {
-        h -= 1000;
-        imgdata.push({img: east[i], x: north.length * 500, y: 0, z: h, nx: -1, nz: 0});
-    }
-
-    h = (west.length - 1) * 500 + 1000;
-    for (var i = 0; i < west.length; i++) {
-        h -= 1000;
-        imgdata.push({img: west[i], x: -north.length * 500, y: 0, z: h, nx: 1, nz: 0});
-    }
-
     return imgdata;
 
 }
