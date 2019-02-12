@@ -1,3 +1,6 @@
+//基础长度
+var len = 750;
+
 (function () {
     /* ==== definitions ==== */
 
@@ -69,9 +72,9 @@
 
             // ---- target positions ----
 
-            this.tx = img.x + (img.nx * Math.sqrt(camera.focalLength) * 20);
+            this.tx = img.x + (img.nx * Math.sqrt(camera.focalLength) * 40);
 
-            this.tz = img.z - (img.nz * Math.sqrt(camera.focalLength) * 20);
+            this.tz = img.z - (img.nz * Math.sqrt(camera.focalLength) * 40);
 
             // ---- create polygons ----
 
@@ -436,23 +439,11 @@
 
             fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [-1001, -490, -490, -1001],
+            x: [-(len * 2 + 1), -(len - 10), -(len - 10), -(len * 2 + 1)],
 
-            z: [-500, -500, -500, -500],
+            z: [-len, -len, -len, -len],
 
-            y: [500, 500, -500, -500]
-
-        }, {
-
-            // wall
-
-            fill: {r: 255, g: 255, b: 255, light: 1},
-
-            x: [-501, 2, 2, -500],
-
-            z: [-500, -500, -500, -500],
-
-            y: [500, 500, -500, -500]
+            y: [len, len, -len, -len]
 
         }, {
 
@@ -460,11 +451,11 @@
 
             fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [0, 502, 502, 0],
+            x: [-(len + 1), 2, 2, -len],
 
-            z: [-500, -500, -500, -500],
+            z: [-len, -len, -len, -len],
 
-            y: [500, 500, -500, -500]
+            y: [len, len, -len, -len]
 
         }, {
 
@@ -472,11 +463,23 @@
 
             fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [490, 1002, 1002, 490],
+            x: [0, len + 2, len + 2, 0],
 
-            z: [-500, -500, -500, -500],
+            z: [-len, -len, -len, -len],
 
-            y: [500, 500, -500, -500]
+            y: [len, len, -len, -len]
+
+        }, {
+
+            // wall
+
+            fill: {r: 255, g: 255, b: 255, light: 1},
+
+            x: [len - 10, len * 2 + 2, len * 2 + 2, len - 10],
+
+            z: [-len, -len, -len, -len],
+
+            y: [len, len, -len, -len]
 
         }, {
 
@@ -484,23 +487,11 @@
 
             fill: {r: 0, g: 0, b: 0, a: 0.2},
 
-            x: [-420, 420, 420, -420],
+            x: [-(len - 80), len - 80, len - 80, -(len - 80)],
 
-            z: [-500, -500, -500, -500],
+            z: [-len - 200, -len - 200, -len - 200, -len - 200],
 
-            y: [150, 150, -320, -320]
-
-        }, {
-
-            // shadow
-
-            fill: {r: 0, g: 0, b: 0, a: 0.2},
-
-            x: [-20, 20, 20, -20],
-
-            z: [-500, -500, -500, -500],
-
-            y: [250, 250, 150, 150]
+            y: [len - 350, len - 350, -(len - 180), -(len - 180)]
 
         }, {
 
@@ -508,11 +499,11 @@
 
             fill: {r: 0, g: 0, b: 0, a: 0.2},
 
-            x: [-20, 20, 20, -20],
+            x: [-30, 30, 30, -30],
 
-            z: [-500, -500, -500, -500],
+            z: [-len - 200, -len - 200, -len - 200, -len - 200],
 
-            y: [-320, -320, -500, -500]
+            y: [len - 250, len - 250, len - 350, len - 350]
 
         }, {
 
@@ -520,11 +511,23 @@
 
             fill: {r: 0, g: 0, b: 0, a: 0.2},
 
-            x: [-20, 20, 10, -10],
+            x: [-30, 30, 30, -30],
 
-            z: [-500, -500, -100, -100],
+            z: [-len - 200, -len - 200, -len - 200, -len - 200],
 
-            y: [-500, -500, -500, -500]
+            y: [-(len - 180), -(len - 180), -len, -len]
+
+        }, {
+
+            // shadow
+
+            fill: {r: 0, g: 0, b: 0, a: 0.2},
+
+            x: [-30, 30, 20, -20],
+
+            z: [-len - 200, -len - 200, -(len - 600), -(len - 600)],
+
+            y: [-len, -len, -len - 300, -len - 300]
 
         }, {
 
@@ -532,11 +535,11 @@
 
             fill: {r: 32, g: 32, b: 32},
 
-            x: [-50, 50, 50, -50],
+            x: [-80, 80, 80, -80],
 
-            z: [-150, -150, -50, -50],
+            z: [-(len - 550), -(len - 550), -(len - 650), -(len - 650)],
 
-            y: [-500, -500, -500, -500]
+            y: [-len - 300, -len - 300, -len - 300, -len - 300]
 
         }, {
 
@@ -544,23 +547,11 @@
 
             fill: {r: 16, g: 16, b: 16},
 
-            x: [-10, 10, 10, -10],
+            x: [-20, 20, 20, -20],
 
-            z: [-100, -100, -100, -100],
+            z: [-(len - 600), -(len - 600), -(len - 600), -(len - 600)],
 
-            y: [300, 300, -500, -500]
-
-        }, {
-
-            // frame
-
-            fill: {r: 255, g: 255, b: 255},
-
-            x: [-320, -320, -320, -320],
-
-            z: [0, -20, -20, 0],
-
-            y: [-190, -190, 190, 190]
+            y: [len + 150, len + 150, -len - 300, -len - 300]
 
         }, {
 
@@ -568,41 +559,53 @@
 
             fill: {r: 255, g: 255, b: 255},
 
-            x: [320, 320, 320, 320],
+            x: [-(len - 270), -(len - 270), -(len - 270), -(len - 270)],
 
-            z: [0, -20, -20, 0],
+            z: [0, -70, -70, 0],
 
-            y: [-190, -190, 190, 190]
+            y: [-(len - 110), -(len - 110), (len - 110), (len - 110)]
+
+        }, {
+
+            // frame
+
+            fill: {r: 255, g: 255, b: 255},
+
+            x: [len - 270, len - 270, len - 270, len - 270],
+
+            z: [0, -70, -70, 0],
+
+            y: [-(len - 110), -(len - 110), len - 110, len - 110]
 
         },
 
-        {img: true},
+        {img: true}
 
-        {
-
-            // ceilingLight
-
-            fill: {r: 255, g: 128, b: 0},
-
-            x: [-50, 50, 50, -50],
-
-            z: [450, 450, 550, 550],
-
-            y: [500, 500, 500, 500]
-
-        }, {
-
-            // groundLight
-
-            fill: {r: 255, g: 128, b: 0},
-
-            x: [-50, 50, 50, -50],
-
-            z: [450, 450, 550, 550],
-
-            y: [-500, -500, -500, -500]
-
-        }
+        // ,{
+        //
+        //     // ceilingLight
+        //
+        //     fill: {r: 255, g: 128, b: 0},
+        //
+        //     x: [-50, 50, 50, -50],
+        //
+        //     z: [450, 450, 550, 550],
+        //
+        //     y: [500, 500, 500, 500]
+        //
+        // }, {
+        //
+        //     // groundLight
+        //
+        //     fill: {r: 255, g: 128, b: 0},
+        //
+        //     x: [-50, 50, 50, -50],
+        //
+        //     z: [450, 450, 550, 550],
+        //
+        //     y: [-500, -500, -500, -500]
+        //
+        // }
 
     ],
 
@@ -620,9 +623,23 @@
  */
 function getImgPath() {
     var images = [];
-    for (var i = 1; i <= 12; i++) {
-        var image = "images/album-temp/" + i + ".jpg";
-        images.push(image);
+    // for (var i = 1; i <= 12; i++) {
+    //     var image = "images/album-temp/" + i + ".jpg";
+    //     if (isExistFile(image)) {
+    //         images.push(image);
+    //     }
+    // }
+    for (var i = 1; i <= 80; i++) {
+        var image = "images/baby/" + i + ".jpg";
+        if (isExistFile(image)) {
+            images.push(image);
+        }
+    }
+    for (var i = 1; i <= 14; i++) {
+        var image = "images/self/" + i + ".jpg";
+        if (isExistFile(image)) {
+            images.push(image);
+        }
     }
     return images;
 }
@@ -637,15 +654,32 @@ function getImgdata() {
     var images = getImgPath();
     //每面墙图片数量
     var num = parseInt(images.length / 4);
-    //墙一半长度+1000
-    var h = (num - 1) * 500 + 1000;
-    var z = num * 500;
+    //墙一半长度+ len * 2
+    var h = (num - 1) * len + len * 2;
+    var z = num * len;
     for (var i = 0; i < num; i++) {
-        h -= 1000;
+        h -= len * 2;
         imgdata.push({img: images[i], x: h, y: 0, z: z, nx: 0, nz: 1});
         imgdata.push({img: images[i + num * 2], x: h, y: 0, z: -z, nx: 0, nz: -1});
         imgdata.push({img: images[i + num], x: z, y: 0, z: h, nx: -1, nz: 0});
         imgdata.push({img: images[i + num * 3], x: -z, y: 0, z: h, nx: 1, nz: 0});
     }
     return imgdata;
+}
+
+/**
+ * 判断文件是否存在
+ * @param url
+ * @returns {boolean}
+ */
+function isExistFile(url) {
+    var xmlHttp;
+    if (window.ActiveXObject) {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    } else if (window.XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest();
+    }
+    xmlHttp.open("Get", url, false);
+    xmlHttp.send();
+    return (xmlHttp.status == 404) ? false : true;
 }
