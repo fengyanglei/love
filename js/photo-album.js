@@ -1,8 +1,7 @@
-
 (function () {
     /* ==== definitions ==== */
 
-    var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1,2],
+    var diapo = [], layers = [], ctx, pointer, scr, camera, light, fps = 0, quality = [1, 2],
 
         // ---- poly constructor ----
 
@@ -10,9 +9,9 @@
 
             this.parent = parent;
 
-            this.ctx    = ctx;
+            this.ctx = ctx;
 
-            this.color  = face.fill || false;
+            this.color = face.fill || false;
 
             this.points = [];
 
@@ -23,13 +22,11 @@
                 for (var i = 0; i < 4; i++) {
 
                     this.points[i] = new ge1doot.transform3D.Point(
-
                         parent.pc.x + (face.x[i] * parent.normalZ) + (face.z[i] * parent.normalX),
 
-                        parent.pc.y +  face.y[i],
+                        parent.pc.y + face.y[i],
 
                         parent.pc.z + (face.x[i] * parent.normalX) + (-face.z[i] * parent.normalZ)
-
                     );
 
                 }
@@ -47,10 +44,9 @@
             // ---- create image ----
 
             this.img = new ge1doot.transform3D.Image(
-
                 this, path + img.img, 1, {
 
-                    isLoaded: function(img) {
+                    isLoaded: function (img) {
 
                         img.parent.isLoaded = true;
 
@@ -59,14 +55,13 @@
                     }
 
                 }
-
             );
 
-            this.visible  = false;
+            this.visible = false;
 
-            this.normalX  = img.nx;
+            this.normalX = img.nx;
 
-            this.normalZ  = img.nz;
+            this.normalZ = img.nz;
 
             // ---- point center ----
 
@@ -87,9 +82,7 @@
                 layers[i] = (p.img === true ? 1 : 2);
 
                 this.poly.push(
-
                     new Poly(this, p)
-
                 );
 
             }
@@ -201,11 +194,9 @@
                         if (this.target.elem) {
 
                             this.target.ry = Math.atan2(
-
                                 this.target.elem.pc.x - this.x,
 
                                 this.target.elem.pc.z - this.z
-
                             );
 
                         }
@@ -218,7 +209,7 @@
 
             });
 
-            camera.z  = -10000;
+            camera.z = -10000;
 
             camera.py = 0;
 
@@ -227,26 +218,22 @@
             for (var i = 0, img; img = json.imgdata[i++];) {
 
                 diapo.push(
-
                     new Diapo(
-
                         json.options.imagesPath,
 
                         img,
 
                         json.structure
-
                     )
-
                 );
 
             }
 
             // ---- start engine ---- >>>
 
-            setInterval(function() {
+            setInterval(function () {
 
-                quality = (fps > 50) ? [2,3] : [1,2];
+                quality = (fps > 50) ? [2, 3] : [1, 2];
 
                 fps = 0;
 
@@ -337,12 +324,10 @@
             // ---- projection ----
 
             for (
-
                 var i = 0;
 
                 this.points[i++].projection();
-
-            );
+            ) ;
 
             this.drawPoly();
 
@@ -358,22 +343,20 @@
 
         // ---- create points ----
 
-        var d = [-1,1,1,-1,1,1,-1,-1];
+        var d = [-1, 1, 1, -1, 1, 1, -1, -1];
 
-        var w = img.texture.width  * 0.5;
+        var w = img.texture.width * 0.5;
 
         var h = img.texture.height * 0.5;
 
         for (var i = 0; i < 4; i++) {
 
             img.points[i] = new ge1doot.transform3D.Point(
-
                 this.pc.x + (w * this.normalZ * d[i]),
 
                 this.pc.y + (h * d[i + 4]),
 
                 this.pc.z + (w * this.normalX * d[i])
-
             );
 
         }
@@ -407,11 +390,9 @@
                 if (
 
                     this.img.isPointerInside(
-
                         pointer.X,
 
                         pointer.Y
-
                     )
 
                 ) camera.over = this;
@@ -428,16 +409,14 @@
 
         // --- load data ----
 
-        load : function (data) {
+        load: function (data) {
 
             window.addEventListener('load', function () {
 
                 ge1doot.loadJS(
-
                     "plugins/imageTransform3D/imageTransform3D.js",
 
                     init, data
-
                 );
 
             }, false);
@@ -448,222 +427,186 @@
 
 })().load({
 
-    imgdata:getImgdata(),
-    // imgdata:[
-    //
-    //     // north
-    //
-    //     {img:'images/album-temp/1.jpg', x:-1000, y:0, z:1500, nx:0, nz:1},
-    //
-    //     {img:'images/album-temp/2.jpg', x:0,     y:0, z:1500, nx:0, nz:1},
-    //
-    //     {img:'images/album-temp/3.jpg', x:1000,  y:0, z:1500, nx:0, nz:1},
-    //
-    //     // east
-    //
-    //     {img:'images/album-temp/4.jpg', x:1500,  y:0, z:1000, nx:-1, nz:0},
-    //
-    //     {img:'images/album-temp/5.jpg', x:1500,  y:0, z:0, nx:-1, nz:0},
-    //
-    //     {img:'images/album-temp/6.jpg', x:1500,  y:0, z:-1000, nx:-1, nz:0},
-    //
-    //     // south
-    //
-    //     {img:'images/album-temp/7.jpg', x:1000,  y:0, z:-1500, nx:0, nz:-1},
-    //
-    //     {img:'images/album-temp/8.jpg', x:0,     y:0, z:-1500, nx:0, nz:-1},
-    //
-    //     {img:'images/album-temp/9.jpg', x:-1000, y:0, z:-1500, nx:0, nz:-1},
-    //
-    //     // west
-    //
-    //     {img:'images/album-temp/10.jpg', x:-1500, y:0, z:-1000, nx:1, nz:0},
-    //
-    //     {img:'images/album-temp/11.jpg', x:-1500, y:0, z:0, nx:1, nz:0},
-    //
-    //     {img:'images/album-temp/12.jpg', x:-1500, y:0, z:1000, nx:1, nz:0}
-    //
-    // ],
-
-    structure:[
+    imgdata: getImgdata(),
+    structure: [
 
         {
 
             // wall
 
-            fill: {r:255, g:255, b:255, light:1},
+            fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [-1001,-490,-490,-1001],
+            x: [-1001, -490, -490, -1001],
 
-            z: [-500,-500,-500,-500],
+            z: [-500, -500, -500, -500],
 
-            y: [500,500,-500,-500]
+            y: [500, 500, -500, -500]
 
-        },{
-
-            // wall
-
-            fill: {r:255, g:255, b:255, light:1},
-
-            x: [-501,2,2,-500],
-
-            z: [-500,-500,-500,-500],
-
-            y: [500,500,-500,-500]
-
-        },{
+        }, {
 
             // wall
 
-            fill: {r:255, g:255, b:255, light:1},
+            fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [0,502,502,0],
+            x: [-501, 2, 2, -500],
 
-            z: [-500,-500,-500,-500],
+            z: [-500, -500, -500, -500],
 
-            y: [500,500,-500,-500]
+            y: [500, 500, -500, -500]
 
-        },{
+        }, {
 
             // wall
 
-            fill: {r:255, g:255, b:255, light:1},
+            fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [490,1002,1002,490],
+            x: [0, 502, 502, 0],
 
-            z: [-500,-500,-500,-500],
+            z: [-500, -500, -500, -500],
 
-            y: [500,500,-500,-500]
+            y: [500, 500, -500, -500]
 
-        },{
+        }, {
 
-            // shadow
+            // wall
 
-            fill: {r:0, g:0, b:0, a:0.2},
+            fill: {r: 255, g: 255, b: 255, light: 1},
 
-            x: [-420,420,420,-420],
+            x: [490, 1002, 1002, 490],
 
-            z: [-500,-500,-500,-500],
+            z: [-500, -500, -500, -500],
 
-            y: [150, 150,-320,-320]
+            y: [500, 500, -500, -500]
 
-        },{
-
-            // shadow
-
-            fill: {r:0, g:0, b:0, a:0.2},
-
-            x: [-20,20,20,-20],
-
-            z: [-500,-500,-500,-500],
-
-            y: [250, 250,150,150]
-
-        },{
+        }, {
 
             // shadow
 
-            fill: {r:0, g:0, b:0, a:0.2},
+            fill: {r: 0, g: 0, b: 0, a: 0.2},
 
-            x: [-20,20,20,-20],
+            x: [-420, 420, 420, -420],
 
-            z: [-500,-500,-500,-500],
+            z: [-500, -500, -500, -500],
 
-            y: [-320, -320,-500,-500]
+            y: [150, 150, -320, -320]
 
-        },{
+        }, {
 
             // shadow
 
-            fill: {r:0, g:0, b:0, a:0.2},
+            fill: {r: 0, g: 0, b: 0, a: 0.2},
 
-            x: [-20,20,10,-10],
+            x: [-20, 20, 20, -20],
 
-            z: [-500,-500,-100,-100],
+            z: [-500, -500, -500, -500],
 
-            y: [-500, -500,-500,-500]
+            y: [250, 250, 150, 150]
 
-        },{
+        }, {
+
+            // shadow
+
+            fill: {r: 0, g: 0, b: 0, a: 0.2},
+
+            x: [-20, 20, 20, -20],
+
+            z: [-500, -500, -500, -500],
+
+            y: [-320, -320, -500, -500]
+
+        }, {
+
+            // shadow
+
+            fill: {r: 0, g: 0, b: 0, a: 0.2},
+
+            x: [-20, 20, 10, -10],
+
+            z: [-500, -500, -100, -100],
+
+            y: [-500, -500, -500, -500]
+
+        }, {
 
             // base
 
-            fill: {r:32, g:32, b:32},
+            fill: {r: 32, g: 32, b: 32},
 
-            x: [-50,50,50,-50],
+            x: [-50, 50, 50, -50],
 
-            z: [-150,-150,-50,-50],
+            z: [-150, -150, -50, -50],
 
-            y: [-500,-500,-500,-500]
+            y: [-500, -500, -500, -500]
 
-        },{
+        }, {
 
             // support
 
-            fill: {r:16, g:16, b:16},
+            fill: {r: 16, g: 16, b: 16},
 
-            x: [-10,10,10,-10],
+            x: [-10, 10, 10, -10],
 
-            z: [-100,-100,-100,-100],
+            z: [-100, -100, -100, -100],
 
-            y: [300,300,-500,-500]
+            y: [300, 300, -500, -500]
 
-        },{
-
-            // frame
-
-            fill: {r:255, g:255, b:255},
-
-            x: [-320,-320,-320,-320],
-
-            z: [0,-20,-20,0],
-
-            y: [-190,-190,190,190]
-
-        },{
+        }, {
 
             // frame
 
-            fill: {r:255, g:255, b:255},
+            fill: {r: 255, g: 255, b: 255},
 
-            x: [320,320,320,320],
+            x: [-320, -320, -320, -320],
 
-            z: [0,-20,-20,0],
+            z: [0, -20, -20, 0],
 
-            y: [-190,-190,190,190]
+            y: [-190, -190, 190, 190]
+
+        }, {
+
+            // frame
+
+            fill: {r: 255, g: 255, b: 255},
+
+            x: [320, 320, 320, 320],
+
+            z: [0, -20, -20, 0],
+
+            y: [-190, -190, 190, 190]
 
         },
 
-        {img:true},
+        {img: true},
 
         {
 
             // ceilingLight
 
-            fill: {r:255, g:128, b:0},
+            fill: {r: 255, g: 128, b: 0},
 
-            x: [-50,50,50,-50],
+            x: [-50, 50, 50, -50],
 
-            z: [450,450,550,550],
+            z: [450, 450, 550, 550],
 
-            y: [500,500,500,500]
+            y: [500, 500, 500, 500]
 
-        },{
+        }, {
 
             // groundLight
 
-            fill: {r:255, g:128, b:0},
+            fill: {r: 255, g: 128, b: 0},
 
-            x: [-50,50,50,-50],
+            x: [-50, 50, 50, -50],
 
-            z: [450,450,550,550],
+            z: [450, 450, 550, 550],
 
-            y: [-500,-500,-500,-500]
+            y: [-500, -500, -500, -500]
 
         }
 
     ],
 
-    options:{
+    options: {
 
         imagesPath: ""
 
@@ -688,40 +631,21 @@ function getImgPath() {
  * 图片位置数据
  */
 function getImgdata() {
-    var north = [];
-    var east = [];
-    var south = [];
-    var west = [];
-    var images = getImgPath();
-    var num = parseInt(images.length / 4);
-    for (var i = 0; i < num; i++) {
-        north.push(images[i]);
-        east.push(images[i + num]);
-        south.push(images[i + num * 2]);
-        west.push(images[i + num * 3]);
-    }
-
     //图片位置数据
     var imgdata = [];
-    //图片数量
-    var nl = north.length;
-    var el = east.length;
+    //图片路径
+    var images = getImgPath();
+    //每面墙图片数量
+    var num = parseInt(images.length / 4);
     //墙一半长度+1000
-    var h = (nl - 1) * 500 + 1000;
-    //南北
-    for (var i = 0; i < nl; i++) {
+    var h = (num - 1) * 500 + 1000;
+    var z = num * 500;
+    for (var i = 0; i < num; i++) {
         h -= 1000;
-        imgdata.push({img: north[i], x: h, y: 0, z: el * 500, nx: 0, nz: 1});
-        imgdata.push({img: south[i], x: h, y: 0, z: -el * 500, nx: 0, nz: -1});
-    }
-
-    //东西
-    h = (el - 1) * 500 + 1000;
-    for (var i = 0; i < el; i++) {
-        h -= 1000;
-        imgdata.push({img: east[i], x: nl * 500, y: 0, z: h, nx: -1, nz: 0});
-        imgdata.push({img: west[i], x: -nl * 500, y: 0, z: h, nx: 1, nz: 0});
+        imgdata.push({img: images[i], x: h, y: 0, z: z, nx: 0, nz: 1});
+        imgdata.push({img: images[i + num * 2], x: h, y: 0, z: -z, nx: 0, nz: -1});
+        imgdata.push({img: images[i + num], x: z, y: 0, z: h, nx: -1, nz: 0});
+        imgdata.push({img: images[i + num * 3], x: -z, y: 0, z: h, nx: 1, nz: 0});
     }
     return imgdata;
-
 }
