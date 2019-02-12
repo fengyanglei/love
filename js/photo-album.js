@@ -629,18 +629,19 @@ function getImgPath() {
     //         images.push(image);
     //     }
     // }
-    for (var i = 1; i <= 80; i++) {
-        var image = "images/baby/" + i + ".jpg";
-        if (isExistFile(image)) {
+    for (var i = 1; i <= 58; i++) {
+        var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/ting/" + i + ".jpg";
+        // if (isExistFile(image)) {
             images.push(image);
-        }
+        // }
     }
-    for (var i = 1; i <= 14; i++) {
-        var image = "images/self/" + i + ".jpg";
-        if (isExistFile(image)) {
+    for (var i = 1; i <= 6; i++) {
+        var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/lei/" + i + ".jpg";
+        // if (isExistFile(image)) {
             images.push(image);
-        }
+        // }
     }
+    console.log(images)
     return images;
 }
 
