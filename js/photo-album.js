@@ -623,25 +623,14 @@ var len = 750;
  */
 function getImgPath() {
     var images = [];
-    // for (var i = 1; i <= 12; i++) {
-    //     var image = "images/album-temp/" + i + ".jpg";
-    //     if (isExistFile(image)) {
-    //         images.push(image);
-    //     }
-    // }
     for (var i = 1; i <= 58; i++) {
         var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/ting/" + i + ".jpg";
-        // if (isExistFile(image)) {
-            images.push(image);
-        // }
+        images.push(image);
     }
     for (var i = 1; i <= 6; i++) {
         var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/lei/" + i + ".jpg";
-        // if (isExistFile(image)) {
-            images.push(image);
-        // }
+        images.push(image);
     }
-    console.log(images)
     return images;
 }
 
