@@ -4,21 +4,21 @@
  */
 function getImgPath() {
     var images = [];
-    // for (var i = 1; i <= 58; i++) {
-    //     var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/ting/" + i + ".jpg";
-    //     images.push(image);
-    // }
-    // for (var i = 1; i <= 6; i++) {
-    //     var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/lei/" + i + ".jpg";
-    //     images.push(image);
-    // }
-
-    for (var j = 1; j <= 3; j++) {
-        for (var i = 1; i <= 6; i++) {
-            var image = "images/album-temp2/" + i + ".png";
-            images.push(image);
-        }
+    for (var i = 1; i <= 58; i++) {
+        var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/ting/" + i + ".jpg";
+        images.push(image);
     }
+    for (var i = 1; i <= 6; i++) {
+        var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/lei/" + i + ".jpg";
+        images.push(image);
+    }
+
+    // for (var j = 1; j <= 3; j++) {
+    //     for (var i = 1; i <= 6; i++) {
+    //         var image = "images/album-temp2/" + i + ".png";
+    //         images.push(image);
+    //     }
+    // }
     return images;
 }
 
@@ -46,7 +46,7 @@ window.onload = function(){
 
     for ( var i=0;i<oImgLength;i++ )
     {
-        oImg[i].style.transform = 'rotateY('+ i*Deg +'deg) translateZ(350px)';
+        oImg[i].style.transform = 'rotateY('+ i*Deg +'deg) translateZ(1350px)';
         oImg[i].style.transition = 'transform 1s '+ (oImgLength-1-i)*0.1 +'s';
 
     }
