@@ -643,7 +643,7 @@ function getImgPath() {
 
 function getImgPath2() {
     var url = "api/file/list?dir=love/ting";
-    $.get(url,"",function (response) {
+    $.get(url,function (response) {
         console.log(response);
     })
 }
