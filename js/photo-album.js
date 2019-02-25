@@ -631,7 +631,21 @@ function getImgPath() {
         var image = "https://f-picture.oss-cn-beijing.aliyuncs.com/love/lei/" + i + ".jpg";
         images.push(image);
     }
+
+    try {
+        getImgPath2();
+    }catch (e) {
+        console.log(e);
+    }
+
     return images;
+}
+
+function getImgPath2() {
+    var url = "api/file/list?dir=love/ting";
+    $.get(url,"",function (response) {
+        console.log(response);
+    })
 }
 
 /**
